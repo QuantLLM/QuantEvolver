@@ -1,0 +1,41 @@
+rft:
+  backend: pure_verl
+  mode: seeded_ocd
+  reward_kind: direction
+  bar_minutes: 5
+  horizon_bars: 1
+  single_asset_symbol: ASSET
+  data_dir: data
+  data_file_template: "{symbol_safe}_1m.parquet"
+
+  experiment_name: quantevolver_example_rft
+  project_name: quant_evolver
+  output_dir: runs/generated_factors
+  run_root: runs/rft
+  task_bank_path: runs/task_bank.yaml
+
+  model_path: path/to/base-model
+  n_gpus: 1
+  total_epochs: 1
+  train_batch_size: 4
+  rollout_n: 4
+  val_n: 1
+  save_freq: -1
+  test_freq: -1
+  max_prompt_length: 3000
+  max_response_length: 256
+  max_model_len: 4096
+  gpu_memory_utilization: 0.70
+  temperature: 0.9
+  reward_workers: 4
+  train_prompt_rows: 16
+  val_prompt_rows: 4
+
+  diversity_reward: true
+  novelty_archive_path: runs/rft/novelty_archive.jsonl
+  exact_repeat_penalty: 0.10
+  family_archive_path: runs/rft/family_archive.jsonl
+  family_free_quota: 8
+  family_repeat_penalty: 0.02
+  family_good_new_threshold: 0.10
+  family_new_bonus: 0.02

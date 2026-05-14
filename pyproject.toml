@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-evolver"
+version = "0.1.0"
+description = "LLM-assisted quantitative alpha factor discovery with a DSL, executable evaluation, and RFT-ready workflows."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "QuantEvolver contributors" }]
+keywords = ["quant", "alpha", "factor", "llm", "reinforcement-fine-tuning"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "pyyaml>=6.0",
+  "scipy>=1.9",
+]
+
+[project.optional-dependencies]
+backtest = ["backtrader>=1.9", "pyarrow>=10"]
+llm = []
+rft = ["torch>=2.0", "pyarrow>=10", "omegaconf>=2.3", "ray>=2.9"]
+dev = ["pytest>=7", "ruff>=0.4"]
+all = ["backtrader>=1.9", "pyarrow>=10", "torch>=2.0", "omegaconf>=2.3", "ray>=2.9", "pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+quantevolver = "quant_evolver.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["quant_evolver*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"

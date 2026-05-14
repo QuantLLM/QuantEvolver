@@ -1,0 +1,22 @@
+scenario_id: example_5m_direction
+seeds:
+  - id: seed_0001
+    name: return_sharpe_60
+    expr: div(ts_mean(returns(60)), ts_std(returns(60)))
+    intuition: Short-term risk-adjusted return momentum.
+    category: momentum
+  - id: seed_0002
+    name: price_zscore_reversal_120
+    expr: neg(zscore(last(close(120)), close(120)))
+    intuition: Mean reversion after 120-bar price displacement.
+    category: mean_reversion
+  - id: seed_0003
+    name: volume_price_corr
+    expr: corr(returns(60), log_arr(volume(60)))
+    intuition: Volume-return coupling indicates order-flow imbalance.
+    category: volume_price
+  - id: seed_0004
+    name: bad_unknown_op
+    expr: unknown_op(close(60))
+    intuition: Invalid example for validator.
+    category: invalid
